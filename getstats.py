@@ -27,7 +27,7 @@ f = open('output.txt','w')
 f.truncate()
 from urllib.request import Request, urlopen
 from bs4 import BeautifulSoup
-head_page = "https://www.thebluealliance.com/event/2019"
+head_page = "https://www.thebluealliance.com/event/2023"
 week1_codes = ["qcmo","scmb","caoc","migib","miket","misou","nhgrs","cadm","gagai","onosh","pahat","vagle","vahay","txelp","txaus","wamou","tuis","isde1","tuis2","isde2","nytr","ohmv","arli","ilch","mndu","mndu2","mxmo","okok","bcvi","cafr","casd","gadal","mibel","mike2","milak","mimil","misjo","txama","orwil","ctwat","inmis","mabri","mdbet","ncwak","njfla","onto3","txsan","pawch","waamv","ausc","isde3","isde4","flor","nyro","nyut","alhu","ksla","mosl","ndgf","mxcm","azfl","gaalb","micen","midet","migul","mimus","onto1","mikng","txcha","txpla","orore","wayak","caln","casf","ausp","marea","mdowi","ncgui","nhsnh","njbri","onbar","paphi","vapor","paca","iacf","ilpe","lake","mokc","code","mxto","cada","cala","gacol","mialp","mijac","milin","mimid","miwmi","onwat","txgre","waspo","nysu","camb","inwla","mabos","mawne","mdoxo","ncash","njtab","onnyo","rismi","txdel","wasno","nyli"]
 ranks = [[],[],[],[],[],[],[],[]]
 count = 1
