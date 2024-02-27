@@ -294,7 +294,7 @@ for team in teams:
 			team_name = orders[i+1][3]
 			if (len(orders[i+1])==11):
 				imageUrl = "https://drive.google.com/uc?id="+((orders[i+1][10].split("="))[1])
-			break												
+			break
 	#https://drive.google.com/a/sfhs.com/uc?id=1jS2dngfiOYwYTF8RfmiQCfnklcR2fg_s&export=download
 	pageId = uuid.uuid4().hex
 	titleId = uuid.uuid4().hex

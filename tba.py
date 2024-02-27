@@ -1,17 +1,12 @@
 import json
 import requests
 import datetime
-import logging, coloredlogs, verboselogs
-
-coloredlogs.install(fmt="%(asctime)s,%(msecs)03d [%(levelname)s] %(message)s", level='DEBUG')
-verboselogs.install()
-logger = logging.getLogger('__name__')
 
 # Define the name of the JSON file
 file_name = "config.json"
 cache = {}  # Initialize an empty cache
 
-def access_storage(key):
+def access_storage(key, logger):
 	logger.verbose(f"Accessing config.json for {key}")
 	try:
 		# Open the JSON file for reading
@@ -42,9 +37,9 @@ get a sense for the match that is going to be played
 ###################################################################################################"""
 
 
-def get_match_info(year, event_code, match):
+def get_match_info(year, event_code, match, logger):
 	logger.info(f"[TBA] Requesting match info for {year}{event_code}_{match}")
-	data = make_request(f"match/{year}{event_code}_{match}/simple")
+	data = make_request(f"match/{year}{event_code}_{match}/simple", logger)
 	logger.debug("JSON Response")
 	logger.debug(json.dumps(data, indent=2))
 	return data
@@ -59,23 +54,23 @@ competition they competed in and the current competition.
 ###################################################################################################"""
 
 
-def get_team_name(team_num):
+def get_team_name(team_num, logger):
 	logger.info(f"[TBA] Requesting team name for {team_num}")
-	data = make_request(f"team/frc{team_num}/simple")
+	data = make_request(f"team/frc{team_num}/simple", logger)
 	logger.debug("JSON Response")
 	logger.debug(json.dumps(data, indent=2))
 	return data["nickname"]
 
-def get_team_status(year, team_num):
+def get_team_status(year, team_num, logger):
 	logger.info(f"[TBA] Requesting team status for {team_num}")
-	data = make_request(f"team/frc{team_num}/events/{year}/statuses")
+	data = make_request(f"team/frc{team_num}/events/{year}/statuses", logger)
 	logger.debug("JSON Response")
 	logger.debug(json.dumps(data, indent=2))
 	return data
 
-def get_match_pred(comp_code, match_code, alliance):
+def get_match_pred(comp_code, match_code, alliance, logger):
 	logger.info(f"[TBA] Requesting match prediction for {match_code}")
-	data = make_request(f"event/{comp_code}/predictions")
+	data = make_request(f"event/{comp_code}/predictions", logger)
 	logger.debug("JSON Response")
 	logger.debug(json.dumps(data, indent=2))
 
@@ -83,18 +78,18 @@ def get_match_pred(comp_code, match_code, alliance):
 		return data["match_predictions"]["qual"][comp_code+"_"+match_code]["prob"]
 	return data["match_predictions"]["playoff"][comp_code+"_"+match_code]["prob"]
 
-def get_event_name(comp_code):
+def get_event_name(comp_code, logger):
 	logger.info(f"[TBA] Requesting event name for {comp_code}")
 	if comp_code == None:
 		logger.warning("No competition found, labeling name as None")
 		return "No Competition"
 
-	data = make_request(f"event/{comp_code}/simple")["name"]
+	data = make_request(f"event/{comp_code}/simple", logger)["name"]
 	logger.debug("JSON Response")
 	logger.debug(json.dumps(data, indent=2))
 	return data
 
-def get_team_stats(comp_code, team_num):
+def get_team_stats(comp_code, team_num, logger):
 	global cache
 
 	logger.info(f"[TBA] Requesting team stats for {team_num}")
@@ -105,7 +100,7 @@ def get_team_stats(comp_code, team_num):
 	if comp_code in cache and f"frc{team_num}" in cache[comp_code]:
 		data = cache[comp_code]
 	else:
-		data = make_request(f"event/{comp_code}/oprs")
+		data = make_request(f"event/{comp_code}/oprs", logger)
 		logger.debug("JSON Output")
 		logger.debug("\n"+json.dumps(data, indent=2))
 		cache[comp_code] = data
@@ -117,10 +112,10 @@ def get_team_stats(comp_code, team_num):
 	}
 	return stats
 
-def prev_comp(comp_code, team_num):
+def prev_comp(comp_code, team_num, logger):
 	logger.info(f"[TBA] Requesting competition prior to {comp_code} for {team_num}")
 	year = comp_code[0:4]
-	events = make_request(f"team/frc{team_num}/events/{year}/simple")
+	events = make_request(f"team/frc{team_num}/events/{year}/simple", logger)
 	logger.debug("JSON Output")
 	logger.debug("\n"+json.dumps(events, indent=2))
 	sorted_events = sorted(events, key=lambda x: x['start_date'])
@@ -132,11 +127,10 @@ def prev_comp(comp_code, team_num):
 			else:
 				return None
 	return None
-		
 
-def make_request(subpage):
+def make_request(subpage, logger):
 	url = "https://www.thebluealliance.com/api/v3/"+subpage
-	tba_api_key = access_storage("tba_api_key")
+	tba_api_key = access_storage("tba_api_key", logger)
 	# Define the headers, including the API key
 	headers = {
 		"accept": "application/json",
