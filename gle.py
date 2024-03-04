@@ -123,13 +123,17 @@ def replace_text_with_images(presentation_id, placeholders_to_images, logger):
 	
 
 	# Execute the batch update
-	if requests:
-		body = {
-			'requests': requests
-		}
-		response = service.presentations().batchUpdate(presentationId=presentation_id, body=body).execute()
-		print(f"Updated presentation with ID: {presentation_id}")
-		return response
+	try:
+		if requests:
+			body = {
+				'requests': requests
+			}
+			response = service.presentations().batchUpdate(presentationId=presentation_id, body=body).execute()
+			print(f"Updated presentation with ID: {presentation_id}")
+			return response
+
+	except:
+		return None
 
 
 def create_presentation(title, logger):

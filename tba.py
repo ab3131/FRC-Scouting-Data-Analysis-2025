@@ -55,11 +55,14 @@ competition they competed in and the current competition.
 
 
 def get_team_name(team_num, logger):
-	logger.info(f"[TBA] Requesting team name for {team_num}")
-	data = make_request(f"team/frc{team_num}/simple", logger)
-	logger.debug("JSON Response")
-	logger.debug(json.dumps(data, indent=2))
-	return data["nickname"]
+	try:
+		logger.info(f"[TBA] Requesting team name for {team_num}")
+		data = make_request(f"team/frc{team_num}/simple", logger)
+		logger.debug("JSON Response")
+		logger.debug(json.dumps(data, indent=2))
+		return data["nickname"]
+	except:
+		return "No Nickname"
 
 def get_team_status(year, team_num, logger):
 	logger.info(f"[TBA] Requesting team status for {team_num}")
@@ -73,10 +76,13 @@ def get_match_pred(comp_code, match_code, alliance, logger):
 	data = make_request(f"event/{comp_code}/predictions", logger)
 	logger.debug("JSON Response")
 	logger.debug(json.dumps(data, indent=2))
+	try:
+		if (match_code.startswith("qm")):
+			return data["match_predictions"]["qual"][comp_code+"_"+match_code]["prob"]
+		return data["match_predictions"]["playoff"][comp_code+"_"+match_code]["prob"]
 
-	if (match_code.startswith("qm")):
-		return data["match_predictions"]["qual"][comp_code+"_"+match_code]["prob"]
-	return data["match_predictions"]["playoff"][comp_code+"_"+match_code]["prob"]
+	except:
+		return 0
 
 def get_event_name(comp_code, logger):
 	logger.info(f"[TBA] Requesting event name for {comp_code}")

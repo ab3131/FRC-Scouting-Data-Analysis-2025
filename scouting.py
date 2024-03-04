@@ -40,22 +40,25 @@ def get_match_name(match_code, loggger):
 def parse_rank_and_assign_color(team_info):
 	if team_info=="":
 		return "#bbbbbb"
+	try:
+		rank_part = team_info.split("Rank")[1].split("with")[0].strip()
+		rank, total_teams = map(int, rank_part.split('/'))
+		ratio = (rank - 1) / (total_teams - 1)
 
-	rank_part = team_info.split("Rank")[1].split("with")[0].strip()
-	rank, total_teams = map(int, rank_part.split('/'))
-	ratio = (rank - 1) / (total_teams - 1)
+		if ratio < 0.5:
+			red = int(255 * 2 * ratio)
+			green = 255
+		else:
+			red = 255
+			green = int(255 * (1 - 2 * (ratio - 0.5)))
 
-	if ratio < 0.5:
-		red = int(255 * 2 * ratio)
-		green = 255
-	else:
-		red = 255
-		green = int(255 * (1 - 2 * (ratio - 0.5)))
+		blue = 0
+		color = f"#{red:02x}{green:02x}{blue:02x}"
 
-	blue = 0
-	color = f"#{red:02x}{green:02x}{blue:02x}"
+		return color
 
-	return color
+	except:
+		return "#bbbbbb"
 
 def remove_substrings(input_string):
 	substrings = ["<b>", "</b>"]
