@@ -4,6 +4,7 @@ import json
 import re
 import logging, coloredlogs, verboselogs
 import argparse
+import statbotics
 
 parser = argparse.ArgumentParser(description="Scouting Program")
 parser.add_argument('-l', '--level', type=str, choices=['CRITICAL', 'ERROR', 'WARNING', 'INFO', 'DEBUG', 
@@ -16,6 +17,7 @@ coloredlogs.install(fmt='%(asctime)s.%(msecs)03d [%(process)d] %(levelname)s %(m
 verboselogs.install()
 l = logging.getLogger('__name__')
 gle.init(l)
+sb = statbotics.Statbotics()
 
 def get_match_name(match_code, loggger):
 	l.verbose(f"Decoding Match Name: {match_code}")
@@ -134,13 +136,22 @@ match_teams = [[team[3:] for team in sublist] for sublist in [match_info["allian
 team_info = []
 
 team_info = [[tba.get_team_status(year, team, l) for team in alliance] for alliance in match_teams]
+sb_stats = sb.get_match(comp_code+"_"+match_code)
 
 team_types = {0: "bt", 1: "rt"}
+
+print(sb_stats["epa_win_prob"])
+print(sb_stats["epa_winner"])
+
 REPLACE_WORDS = {
 	"{regional_name}": tba.get_event_name(comp_code, l),
 	"{match_name}": get_match_name(match_code, l),
-	"{p_rt}": str(round(100-(100*tba.get_match_pred(comp_code, match_code, "red", l)), 2)),
-	"{p_bt}": str(round(100*tba.get_match_pred(comp_code, match_code, "blue", l), 2))
+	"{tba_p_rt}": str(round(100-(100*tba.get_match_pred(comp_code, match_code, "red", l)), 2)),
+	"{tba_p_bt}": str(round(100*tba.get_match_pred(comp_code, match_code, "blue", l), 2)),
+	"{sb_p_rt}": str(round(100*sb_stats["epa_win_prob"], 2)),
+	"{sb_p_bt}": str(round((100 - (100*sb_stats["epa_win_prob"])), 2)),
+	"{epa_rt}": str(sb_stats["red_epa_sum"]),
+	"{epa_bt}": str(sb_stats["blue_epa_sum"])
 }
 
 REPLACE_COLORS = {}
@@ -156,7 +167,12 @@ i: info
 
 penguin = {0: {}, 1: {}}
 
+second_pass = False
+
 for a in range(2):
+	total_opr = 0.0
+	total_dpr = 0.0
+
 	for t in range(3):
 		k = team_types[a]
 		team = match_teams[a][t]
@@ -171,7 +187,9 @@ for a in range(2):
 		
 		ccwm = tba.get_team_stats(comp_code, team, l)["ccwm"]
 		opr = tba.get_team_stats(comp_code, team, l)["opr"]
+		total_opr += float(opr)
 		dpr = tba.get_team_stats(comp_code, team, l)["dpr"]
+		total_dpr += float(dpr)
 
 		penguin[a][team] = {"opr": opr, "dpr": dpr, "ccwm": ccwm}
 
@@ -181,6 +199,14 @@ for a in range(2):
 
 		REPLACE_WORDS[f"{{{k}{t+1}_prev_status}}"] = remove_substrings(i[tba.prev_comp(comp_code, team, l)]["overall_status_str"]) if tba.prev_comp(comp_code, team, l) != None else ""
 		REPLACE_WORDS[f"{{{k}{t+1}_curr_status}}"] = remove_substrings(i[comp_code]["overall_status_str"])
+
+	if second_pass:
+		REPLACE_WORDS["{opr_rt}"] = str(round(total_opr, 2))
+		REPLACE_WORDS["{dpr_bt}"] = str(round(total_dpr, 2))
+	else:
+		REPLACE_WORDS["{opr_bt}"] = str(round(total_opr, 2))
+		REPLACE_WORDS["{dpr_rt}"] = str(round(total_dpr, 2))
+	second_pass = True
 
 result = find_top_teams(penguin)
 print(result)
