@@ -70,7 +70,7 @@ def get_sheet_data(logger):
 
 def sheets_lookup(team, data, l):
 	for row in data:
-		if (row[1] == team):
+		if (row[2] == team):
 			return row
 
 def replace_text_with_images(presentation_id, placeholders_to_images, logger):
@@ -123,18 +123,18 @@ def replace_text_with_images(presentation_id, placeholders_to_images, logger):
 	
 
 	# Execute the batch update
-	try:
-		if requests:
-			body = {
-				'requests': requests
-			}
-			response = service.presentations().batchUpdate(presentationId=presentation_id, body=body).execute()
-			print(f"Updated presentation with ID: {presentation_id}")
-			return response
-
+	#try:
+	if requests:
+		body = {
+			'requests': requests
+		}
+		response = service.presentations().batchUpdate(presentationId=presentation_id, body=body).execute()
+		print(f"Updated presentation with ID: {presentation_id}")
+		return response
+	"""
 	except:
-		return None
-
+		return response
+"""
 
 def create_presentation(title, logger):
 	"""

@@ -107,12 +107,12 @@ def find_top_teams(alliances):
 
 def parse_scouting_data(row):
 	output = ""
-	output += ("Auto: "+row[2]+"\n")
-	output += (row[3]+" Amp, ")
-	output += (row[4]+" Speaker, ")
-	output += (row[5]+" Trap\n")
-	output += ("Climbing: "+row[6]+"\n")
-	output += ("Human Player Ranking: "+row[7]+"\n")
+	output += ("Auto: "+row[3]+"\n")
+	output += (row[4]+" for Coral, ")
+	output += (row[5]+" for algae, ")
+	output += (row[6]+" Climb types\n")
+	output += ("Intake: "+row[7]+"\n")
+	output += ("Algae Removal: "+row[8]+"\n")
 	return output
 
 
@@ -140,18 +140,19 @@ sb_stats = sb.get_match(comp_code+"_"+match_code)
 
 team_types = {0: "bt", 1: "rt"}
 
-print(sb_stats["epa_win_prob"])
-print(sb_stats["epa_winner"])
+#print(sb_stats["epa_win_prob"])
+#print(sb_stats["epa_winner"])
 
 REPLACE_WORDS = {
 	"{regional_name}": tba.get_event_name(comp_code, l),
 	"{match_name}": get_match_name(match_code, l),
 	"{tba_p_rt}": str(round(100-(100*tba.get_match_pred(comp_code, match_code, "red", l)), 2)),
 	"{tba_p_bt}": str(round(100*tba.get_match_pred(comp_code, match_code, "blue", l), 2)),
-	"{sb_p_rt}": str(round(100*sb_stats["epa_win_prob"], 2)),
-	"{sb_p_bt}": str(round((100 - (100*sb_stats["epa_win_prob"])), 2)),
-	"{epa_rt}": str(sb_stats["red_epa_sum"]),
-	"{epa_bt}": str(sb_stats["blue_epa_sum"])
+#	"{sb_p_rt}": str(round(100*sb_stats["epa_win_prob"], 2)),
+#	"{sb_p_bt}": str(round((100 - (100*sb_stats["epa_win_prob"])), 2)),
+#	"{epa_rt}": str(sb_stats["red_epa_sum"]),
+#	"{epa_bt}": str(sb_stats["blue_epa_sum"])
+
 }
 
 REPLACE_COLORS = {}
@@ -184,7 +185,8 @@ for a in range(2):
 		REPLACE_WORDS[f"{{{k}{t+1}_prev_ccwm}}"] = tba.get_team_stats(tba.prev_comp(comp_code, team, l), team, l)["ccwm"]
 		REPLACE_WORDS[f"{{{k}{t+1}_prev_opr}}"] = tba.get_team_stats(tba.prev_comp(comp_code, team, l), team, l)["opr"]
 		REPLACE_WORDS[f"{{{k}{t+1}_prev_dpr}}"] = tba.get_team_stats(tba.prev_comp(comp_code, team, l), team, l)["dpr"]
-		
+
+
 		ccwm = tba.get_team_stats(comp_code, team, l)["ccwm"]
 		opr = tba.get_team_stats(comp_code, team, l)["opr"]
 		total_opr += float(opr)
@@ -241,14 +243,18 @@ for a in range(2):
 		k = team_types[a]
 		team = match_teams[a][t]
 		row = gle.sheets_lookup(team, data, l)
+		print(team, row)
 		if (row != None):
-			REPLACE_IMAGES[f"{{{k}{t+1}_photo}}"] = row[8]
+			REPLACE_IMAGES[f"{{{k}{t+1}_photo}}"] = row[9]
 			REPLACE_WORDS[f"{{{k}{t+1}_scouting}}"] = parse_scouting_data(row)
+			REPLACE_WORDS[f"{{{k}{t + 1}_coral}}"] = row[4]
+			REPLACE_WORDS[f"{{{k}{t + 1}_climb}}"] = row[6]
 
-
-pres = gle.copy_presentation("1kyycROakSpSXfv_8ehGT-h0zobi4dCWItsX4zk50Dm4", get_match_name(match_code, l), l)
+pres = gle.copy_presentation("1kYfFspMuULX_o9jot3aGFUaUEY8-ae8bzlEk3KCMfhU", get_match_name(match_code, l), l)
 response = gle.update_textbox_backgrounds(pres, REPLACE_COLORS, l)
 response = gle.replace_all_text_in_slides(pres, REPLACE_WORDS, l)
+
+
 response = gle.replace_text_with_images(pres, REPLACE_IMAGES, l)
 print(response)
 
