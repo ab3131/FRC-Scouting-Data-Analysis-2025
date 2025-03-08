@@ -108,9 +108,14 @@ def find_top_teams(alliances):
 def parse_scouting_data(row):
 	output = ""
 	output += ("Auto: "+row[3]+"\n")
-	output += (row[4]+" for Coral, ")
-	output += (row[5]+" for algae, ")
-	output += (row[6]+" Climb types\n")
+	output += ("Coral Levels: "+ row[4] + "\n")
+	algaestring = ""
+	if "Mechanism to score in processor" in row[5]:
+		algaestring+="processor, "
+	if "Mechanism to score in barge" in row[5]:
+		algaestring+="barge"
+	output += ("Algae: "+ algaestring + "\n")
+	output += ("Climb: "+row[6] + "\n")
 	output += ("Intake: "+row[7]+"\n")
 	output += ("Algae Removal: "+row[8]+"\n")
 	return output
@@ -247,13 +252,13 @@ for a in range(2):
 		if (row != None):
 			REPLACE_IMAGES[f"{{{k}{t+1}_photo}}"] = row[9]
 			REPLACE_WORDS[f"{{{k}{t+1}_scouting}}"] = parse_scouting_data(row)
+			print(parse_scouting_data(row))
 			REPLACE_WORDS[f"{{{k}{t + 1}_coral}}"] = row[4]
 			REPLACE_WORDS[f"{{{k}{t + 1}_climb}}"] = row[6]
 
 pres = gle.copy_presentation("1kYfFspMuULX_o9jot3aGFUaUEY8-ae8bzlEk3KCMfhU", get_match_name(match_code, l), l)
 response = gle.update_textbox_backgrounds(pres, REPLACE_COLORS, l)
 response = gle.replace_all_text_in_slides(pres, REPLACE_WORDS, l)
-
 
 response = gle.replace_text_with_images(pres, REPLACE_IMAGES, l)
 print(response)
