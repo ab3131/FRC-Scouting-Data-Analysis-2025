@@ -128,7 +128,7 @@ if __name__ == "__main__":
 	parser.add_argument("-log", required=False, choices=['CRITICAL','ERROR','SUCCESS','WARNING','NOTICE','INFO','VERBOSE','DEBUG','SPAM'], default='SUCCESS')
 	args = parser.parse_args()
 	level = args.log
-
+#tba seems not to have the pred data for 2025
 tba_api_key = tba.access_storage("tba_api_key", l)
 year = tba.access_storage("year", l)
 event_code = tba.access_storage("event_code", l)
@@ -142,7 +142,7 @@ team_info = []
 
 team_info = [[tba.get_team_status(year, team, l) for team in alliance] for alliance in match_teams]
 sb_stats = sb.get_match(comp_code+"_"+match_code)
-
+print(sb_stats)
 team_types = {0: "bt", 1: "rt"}
 
 #print(sb_stats["epa_win_prob"])
@@ -153,10 +153,10 @@ REPLACE_WORDS = {
 	"{match_name}": get_match_name(match_code, l),
 	"{tba_p_rt}": str(round(100-(100*tba.get_match_pred(comp_code, match_code, "red", l)), 2)),
 	"{tba_p_bt}": str(round(100*tba.get_match_pred(comp_code, match_code, "blue", l), 2)),
-#	"{sb_p_rt}": str(round(100*sb_stats["epa_win_prob"], 2)),
-#	"{sb_p_bt}": str(round((100 - (100*sb_stats["epa_win_prob"])), 2)),
-#	"{epa_rt}": str(sb_stats["red_epa_sum"]),
-#	"{epa_bt}": str(sb_stats["blue_epa_sum"])
+	"{sb_p_rt}": str(round(100*sb_stats["pred"]["red_win_prob"], 2)),
+	"{sb_p_bt}": str(round((100 - (100*sb_stats["pred"]["red_win_prob"])), 2)),
+	"{epa_rt}": str(sb_stats["pred"]["red_score"]),
+	"{epa_bt}": str(sb_stats["pred"]["blue_score"])
 
 }
 
@@ -170,6 +170,7 @@ k: key
 i: info
 
 """
+
 
 penguin = {0: {}, 1: {}}
 
@@ -252,9 +253,12 @@ for a in range(2):
 		if (row != None):
 			REPLACE_IMAGES[f"{{{k}{t+1}_photo}}"] = row[9]
 			REPLACE_WORDS[f"{{{k}{t+1}_scouting}}"] = parse_scouting_data(row)
-			print(parse_scouting_data(row))
-			REPLACE_WORDS[f"{{{k}{t + 1}_coral}}"] = row[4]
-			REPLACE_WORDS[f"{{{k}{t + 1}_climb}}"] = row[6]
+			corallevels = row[4].split(", ")
+			coral = "\n".join(corallevels)
+			REPLACE_WORDS[f"{{{k}{t + 1}_coral}}"] = coral
+			climblevels = row[6].split(", ")
+			climb = "\n".join(climblevels)
+			REPLACE_WORDS[f"{{{k}{t + 1}_climb}}"] = climb
 
 pres = gle.copy_presentation("1kYfFspMuULX_o9jot3aGFUaUEY8-ae8bzlEk3KCMfhU", get_match_name(match_code, l), l)
 response = gle.update_textbox_backgrounds(pres, REPLACE_COLORS, l)
