@@ -105,6 +105,37 @@ def find_top_teams(alliances):
 
     return result
 
+def process_coral(clevels):
+	finalstr = ""
+	if("Level 4" in clevels):
+		finalstr+="Level 4"
+	finalstr+="\n"
+	if ("Level 3" in clevels):
+		finalstr += "Level 3"
+	finalstr += "\n"
+	if ("Level 2" in clevels):
+		finalstr += "Level 2"
+	finalstr += "\n"
+	if ("Level 1" in clevels):
+		finalstr += "Level 1"
+	finalstr += "\n"
+	return finalstr
+
+def process_climb(clevels):
+	finalstr = ""
+	if("Park" in clevels):
+		finalstr+="Park"
+	finalstr+="\n"
+	if ("Shallow" in clevels):
+		finalstr += "Shallow"
+	finalstr += "\n"
+	if ("Deep" in clevels):
+		finalstr += "Deep"
+	finalstr += "\n"
+	return finalstr
+
+
+
 def parse_scouting_data(row):
 	output = ""
 	output += ("Auto: "+row[3]+"\n")
@@ -170,8 +201,6 @@ k: key
 i: info
 
 """
-
-
 penguin = {0: {}, 1: {}}
 
 second_pass = False
@@ -191,8 +220,6 @@ for a in range(2):
 		REPLACE_WORDS[f"{{{k}{t+1}_prev_ccwm}}"] = tba.get_team_stats(tba.prev_comp(comp_code, team, l), team, l)["ccwm"]
 		REPLACE_WORDS[f"{{{k}{t+1}_prev_opr}}"] = tba.get_team_stats(tba.prev_comp(comp_code, team, l), team, l)["opr"]
 		REPLACE_WORDS[f"{{{k}{t+1}_prev_dpr}}"] = tba.get_team_stats(tba.prev_comp(comp_code, team, l), team, l)["dpr"]
-
-
 		ccwm = tba.get_team_stats(comp_code, team, l)["ccwm"]
 		opr = tba.get_team_stats(comp_code, team, l)["opr"]
 		total_opr += float(opr)
@@ -254,10 +281,10 @@ for a in range(2):
 			REPLACE_IMAGES[f"{{{k}{t+1}_photo}}"] = row[9]
 			REPLACE_WORDS[f"{{{k}{t+1}_scouting}}"] = parse_scouting_data(row)
 			corallevels = row[4].split(", ")
-			coral = "\n".join(corallevels)
+			coral = process_coral(corallevels)
 			REPLACE_WORDS[f"{{{k}{t + 1}_coral}}"] = coral
 			climblevels = row[6].split(", ")
-			climb = "\n".join(climblevels)
+			climb = process_climb(climblevels)
 			REPLACE_WORDS[f"{{{k}{t + 1}_climb}}"] = climb
 
 pres = gle.copy_presentation("1kYfFspMuULX_o9jot3aGFUaUEY8-ae8bzlEk3KCMfhU", get_match_name(match_code, l), l)

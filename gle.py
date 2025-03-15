@@ -122,19 +122,19 @@ def replace_text_with_images(presentation_id, placeholders_to_images, logger):
 							requests.append({'deleteObject': {'objectId': element['objectId']}})
 	
 
-	# Execute the batch update
-	#try:
-	if requests:
-		body = {
-			'requests': requests
-		}
-		response = service.presentations().batchUpdate(presentationId=presentation_id, body=body).execute()
-		print(f"Updated presentation with ID: {presentation_id}")
-		return response
-	"""
+	#Execute the batch update
+	try:
+		if requests:
+			body = {
+				'requests': requests
+			}
+			response = service.presentations().batchUpdate(presentationId=presentation_id, body=body).execute()
+			print(f"Updated presentation with ID: {presentation_id}")
+			return response
+
 	except:
-		return response
-"""
+		return None
+
 
 def create_presentation(title, logger):
 	"""
