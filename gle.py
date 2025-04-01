@@ -87,7 +87,11 @@ def replace_text_with_images(presentation_id, placeholders_to_images, logger):
 	requests = []  # Holds all our requests
 
 	# Iterate over all slides and placeholders
+	counter = 1
 	for slide_id, slide in enumerate(slides):
+		if(counter==5):
+			print(slide['pageElements'])
+		counter+=1
 		for element in slide['pageElements']:
 			if 'shape' in element and 'text' in element['shape']:
 				text_elements = element['shape']['text']['textElements']
@@ -102,8 +106,16 @@ def replace_text_with_images(presentation_id, placeholders_to_images, logger):
 
 							# For some reason I have no clue about, the scale and translate factor is off
 							# These lines fix it
-							transform['translateX'] = transform['translateX'] - 500000
-							transform['scaleX'] = transform['scaleY']
+							transform['translateX'] = 6000000
+							transform['translateY'] = -500000
+							transform['scaleX'] = 1
+							transform['scaleY'] = 2
+							# temp = transform['scaleX']
+							# transform['scaleX'] = transform['scaleY']
+							# transform['scaleY'] = temp
+							print("TRANSFORM X:" + str(transform['translateX']))
+							print("TRANSFORM Y:" + str(transform['translateY']))
+
 
 
 
