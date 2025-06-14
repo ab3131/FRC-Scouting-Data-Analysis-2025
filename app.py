@@ -136,6 +136,7 @@ def match_info():
     except Exception as e:
         return jsonify({"success": False, "error": str(e)}), 500
 
+"""
 @app.route('/api/strategy-summary', methods=['POST'])
 def strategy_summary():
     try:
@@ -143,7 +144,7 @@ def strategy_summary():
         red_summaries = body.get("red", [])
         blue_summaries = body.get("blue", [])
 
-        prompt = f"""
+        prompt = f
         Analyze the following scouting summaries for two alliances in an FRC robotics match. Provide 2-3 short strategic takeaways or observations.
 
         Red Alliance:
@@ -153,7 +154,7 @@ def strategy_summary():
         {'\n'.join(blue_summaries)}
 
         Provide clear, concise bullet points. Go directly into the bullet points, there should be NO TEXT prior to your observations. When referencing certain capabilities, YOU MUST provide team numbers to reference. These team numbers SHOULD NEVER be in list format. Each Team number should ALWAYS have \"Team\" before it. There should be no \"Team 1, 2...\" or \"Team 1 and 2\"...these are completely off limits. Always reference them as 'Team 1, Team 2' etc.
-        """
+        
 
         response = cohere_client.generate(
             model='command-r-plus',
@@ -167,7 +168,7 @@ def strategy_summary():
     except Exception as e:
         print("Cohere error:", e)
         return jsonify({"success": False, "error": str(e)}), 500
-
+"""
 
 @app.route('/api/curryear', methods=['GET'])
 def current_year():
