@@ -6,6 +6,8 @@ import datetime
 file_name = "config.json"
 cache = {}  # Initialize an empty cache
 
+TBA_API_KEY = ""
+
 def access_storage(key, logger):
 	logger.verbose(f"Accessing config.json for {key}")
 	try:
@@ -78,8 +80,21 @@ def get_match_pred(comp_code, match_code, alliance, logger):
 	logger.debug(json.dumps(data, indent=2))
 	try:
 		if (match_code.startswith("qm")):
-			return data["match_predictions"]["qual"][comp_code+"_"+match_code]["prob"]
-		return data["match_predictions"]["playoff"][comp_code+"_"+match_code]["prob"]
+			print("hello")
+			if(alliance==data["match_predictions"]["qual"][comp_code+"_"+match_code]["winning_alliance"]):
+				print("further")
+				return data["match_predictions"]["qual"][comp_code+"_"+match_code]["prob"]
+			else:
+				print("furthermore")
+				return 1-data["match_predictions"]["qual"][comp_code+"_"+match_code]["prob"]
+		else:
+			print("hi")
+			if (alliance == data["match_predictions"]["playoff"][comp_code + "_" + match_code]["winning_alliance"]):
+				print("farther")
+				return data["match_predictions"]["playoff"][comp_code + "_" + match_code]["prob"]
+			else:
+				print("farthermore")
+				return 1 - data["match_predictions"]["playoff"][comp_code + "_" + match_code]["prob"]
 
 	except:
 		return 0
@@ -160,5 +175,35 @@ def make_request(subpage, logger):
 	except requests.exceptions.RequestException as e:
 		logger.error(f"API request {subpage} failed with error {e}")
 		return None
+
+def get_year(logger):
+	key = "year"
+	with open(file_name, "r") as json_file:
+		# Load the JSON data from the file
+		data = json.load(json_file)
+		# Check if the key exists in the JSON data
+		if key in data:
+			# Extract and print the value associated with the key
+			value = data[key]
+			logger.notice(f"Access successful {key}: {value}")
+			return (value)
+		return;
+def obtain_events(year, logger):
+	TBA_API_KEY = access_storage("tba_api_key", logger)
+	headers = {'X-TBA-Auth-Key': TBA_API_KEY}
+	url = f"https://www.thebluealliance.com/api/v3/team/frc2367/events/{year}"
+
+	response = requests.get(url, headers=headers)
+	return response
+
+def obtain_matches(comp_code, logger):
+	tba_url = f"https://www.thebluealliance.com/api/v3/team/frc2367/event/{comp_code}/matches"
+	TBA_API_KEY = access_storage("tba_api_key", logger)
+	headers = {
+		'X-TBA-Auth-Key': TBA_API_KEY  # or hardcoded for now: 'YOUR_API_KEY'
+	}
+	response = requests.get(tba_url, headers=headers)
+	return response
+
 
 
