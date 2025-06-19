@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="2a6dc8df-6e6d-413e-9a45-bca825bb536d" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/scoutingweb/src/Menu.js" beforeDir="false" afterPath="$PROJECT_DIR$/scoutingweb/src/Menu.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scoutingweb/src/pages/Login.js" beforeDir="false" afterPath="$PROJECT_DIR$/scoutingweb/src/pages/Login.js" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/scoutingweb" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;history&quot;: [
+    {
+      &quot;searchQuery&quot;: &quot;replace images&quot;,
+      &quot;state&quot;: &quot;OPEN&quot;,
+      &quot;assignee&quot;: &quot;ab3131&quot;
+    }
+  ],
+  &quot;lastFilter&quot;: {
+    &quot;searchQuery&quot;: &quot;replace images&quot;,
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;ab3131&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/ab3131/FRC-Scouting-Data-Analysis-2025&quot;,
+    &quot;accountId&quot;: &quot;098afa61-b666-4309-9714-9d8264ada3fa&quot;
+  }
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 8
+}</component>
+  <component name="ProjectId" id="2u1TWZtW9hU2ERDafNWYcO25ZUc" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Python.app.executor": "Run",
+    "Python.gle.executor": "Run",
+    "Python.scouting.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "/Users/abhome/Downloads/2367ScoutingWebsite/FRC-Scouting-Data-Analysis-2025",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-js-predefined-d6986cc7102b-6a121458b545-JavaScript-PY-251.25410.159" />
+        <option value="bundled-python-sdk-e0ed3721d81e-36ea0e71a18c-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-251.25410.159" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="2a6dc8df-6e6d-413e-9a45-bca825bb536d" name="Changes" comment="" />
+      <created>1741415113462</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1741415113462</updated>
+      <workItem from="1748980863173" duration="115000" />
+      <workItem from="1749005963392" duration="910000" />
+      <workItem from="1749079980956" duration="687000" />
+      <workItem from="1749534575431" duration="3147000" />
+      <workItem from="1749835849895" duration="5321000" />
+      <workItem from="1749885822786" duration="3608000" />
+      <workItem from="1750231279484" duration="5584000" />
+      <workItem from="1750291344584" duration="1501000" />
+    </task>
+    <task id="LOCAL-00001" summary="updated code for 2025(pre-scouting)...will update config.json when comp begins">
+      <option name="closed" value="true" />
+      <created>1741464047654</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1741464047654</updated>
+    </task>
+    <task id="LOCAL-00002" summary="finalized code...slides look good&#10;waiting to update config.json">
+      <option name="closed" value="true" />
+      <created>1741465325999</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1741465325999</updated>
+    </task>
+    <task id="LOCAL-00003" summary="finalized code...slides look good&#10;waiting to update config.json">
+      <option name="closed" value="true" />
+      <created>1741465462624</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1741465462624</updated>
+    </task>
+    <task id="LOCAL-00004" summary="testing gitignore">
+      <option name="closed" value="true" />
+      <created>1741465537188</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1741465537188</updated>
+    </task>
+    <task id="LOCAL-00005" summary="testing gitignore">
+      <option name="closed" value="true" />
+      <created>1741465650369</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1741465650369</updated>
+    </task>
+    <task id="LOCAL-00006" summary="testing gitignore">
+      <option name="closed" value="true" />
+      <created>1741465663750</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1741465663750</updated>
+    </task>
+    <task id="LOCAL-00007" summary="final with new formatting">
+      <option name="closed" value="true" />
+      <created>1741475988047</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1741475988047</updated>
+    </task>
+    <task id="LOCAL-00008" summary="fixed coral and climb formatting">
+      <option name="closed" value="true" />
+      <created>1742064990018</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1742064990018</updated>
+    </task>
+    <task id="LOCAL-00009" summary="fix translation and scale of images">
+      <option name="closed" value="true" />
+      <created>1743549984618</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1743549984618</updated>
+    </task>
+    <task id="LOCAL-00010" summary="added backend code">
+      <option name="closed" value="true" />
+      <created>1748629525935</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1748629525935</updated>
+    </task>
+    <task id="LOCAL-00011" summary="added routes to obtain matches, year, event, etc.">
+      <option name="closed" value="true" />
+      <created>1749887954657</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1749887954657</updated>
+    </task>
+    <task id="LOCAL-00012" summary="fixed some build errors">
+      <option name="closed" value="true" />
+      <created>1750292377291</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1750292377291</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="updated code for 2025(pre-scouting)...will update config.json when comp begins" />
+    <MESSAGE value="finalized code...slides look good&#10;waiting to update config.json" />
+    <MESSAGE value="testing gitignore" />
+    <MESSAGE value="final with new formatting" />
+    <MESSAGE value="fixed coral and climb formatting" />
+    <MESSAGE value="fix translation and scale of images" />
+    <MESSAGE value="added backend code" />
+    <MESSAGE value="added routes to obtain matches, year, event, etc." />
+    <MESSAGE value="fixed some build errors" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed some build errors" />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/FRC_Scouting_Data_Analysis_2025$app.coverage" NAME="app Coverage Results" MODIFIED="1749849327641" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+  </component>
+</project>
