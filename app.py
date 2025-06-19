@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, send_from_directory
 from flask_cors import CORS
 import tba
 import gle
@@ -11,7 +11,8 @@ import requests
 from io import BytesIO
 from flask import send_file
 
-app = Flask(__name__)
+basedir = os.path.abspath(os.path.dirname(__file__))
+app = Flask(__name__, static_folder=os.path.join(basedir, 'scoutingweb', 'build'), static_url_path='/')
 CORS(app)
 
 coloredlogs.install(fmt='%(asctime)s.%(msecs)03d [%(process)d] %(levelname)s %(message)s', level='INFO')
@@ -259,6 +260,13 @@ def get_matches(event_key):
     matches = response.json()
     return jsonify([match['key'] for match in matches])
 
+@app.route('/', defaults={'path': ''})
+@app.route('/<path:path>')
+def serve_react(path):
+    if path != "" and os.path.exists(os.path.join(app.static_folder, path)):
+        return send_from_directory(app.static_folder, path)
+    else:
+        return send_from_directory(app.static_folder, 'index.html')
 
 if __name__ == '__main__':
     app.run(debug=True, port=5050)
