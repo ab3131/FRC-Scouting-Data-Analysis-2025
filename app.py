@@ -61,12 +61,19 @@ def parse_scouting_data(row):
     output += ("Algae Removal: " + row[8] + "\n")
     return output
 
-def get_match_report(match_code):
+def get_match_report(full_match_key):
     tba_api_key = tba.access_storage("tba_api_key", l)
+    m = re.match(r"(\d{4})([a-z0-9]+)_(.+)", full_match_key)
+    if not m:
+        raise ValueError(f"Invalid match key: {full_match_key}")
+
+    year, event_code, match_code = m.groups()
+    comp_code = year + event_code
+    """
     year = tba.access_storage("year", l)
     event_code = tba.access_storage("event_code", l)
     comp_code = year + event_code
-
+    """
     match_info = tba.get_match_info(year, event_code, match_code, l)
     match_teams = [[team[3:] for team in sublist] for sublist in
                    [match_info["alliances"]["blue"]["team_keys"], match_info["alliances"]["red"]["team_keys"]]]
