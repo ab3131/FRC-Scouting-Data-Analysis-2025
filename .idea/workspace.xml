@@ -41,7 +41,7 @@
 }</component>
   <component name="GithubPullRequestsUISettings">{
   &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/ab3131/FRC-Scouting-Data-Analysis-2025&quot;,
+    &quot;url&quot;: &quot;https://github.com/ab3131/scoutingweb.git&quot;,
     &quot;accountId&quot;: &quot;098afa61-b666-4309-9714-9d8264ada3fa&quot;
   }
 }</component>
@@ -126,6 +126,12 @@
       <workItem from="1750231279484" duration="5584000" />
       <workItem from="1750291344584" duration="1501000" />
       <workItem from="1766802000673" duration="4334000" />
+      <workItem from="1767515767329" duration="2326000" />
+      <workItem from="1767601978843" duration="36000" />
+      <workItem from="1767656308830" duration="2162000" />
+      <workItem from="1767666094138" duration="12000" />
+      <workItem from="1767670992091" duration="1788000" />
+      <workItem from="1767917606087" duration="95000" />
     </task>
     <task id="LOCAL-00001" summary="updated code for 2025(pre-scouting)...will update config.json when comp begins">
       <option name="closed" value="true" />

@@ -21,7 +21,7 @@ l = logging.getLogger(__name__)
 gle.init(l)
 sb = statbotics.Statbotics()
 
-cohere_client = cohere.Client(os.getenv("COHERE_API_KEY"))
+#cohere_client = cohere.Client(os.getenv("COHERE_API_KEY"))
 
 def get_match_name(match_code):
     match_types = {
