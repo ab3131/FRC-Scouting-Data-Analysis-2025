@@ -4,7 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2a6dc8df-6e6d-413e-9a45-bca825bb536d" name="Changes" comment="" />
+    <list default="true" id="2a6dc8df-6e6d-413e-9a45-bca825bb536d" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -126,7 +128,8 @@
       <workItem from="1767656308830" duration="2162000" />
       <workItem from="1767666094138" duration="12000" />
       <workItem from="1767670992091" duration="1788000" />
-      <workItem from="1767917606087" duration="407000" />
+      <workItem from="1767917606087" duration="1290000" />
+      <workItem from="1768691210074" duration="22000" />
     </task>
     <task id="LOCAL-00001" summary="updated code for 2025(pre-scouting)...will update config.json when comp begins">
       <option name="closed" value="true" />
