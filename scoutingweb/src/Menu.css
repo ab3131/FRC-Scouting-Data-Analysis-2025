@@ -1,0 +1,23 @@
+.websiteHeader {
+    padding: 10px;
+    text-align: center;
+    color: black;
+    font-size: 48px;
+    text-decoration: none;
+    margin-top:5px;
+    padding-left: 33vw;
+
+}
+.websiteLink {
+    text-decoration: none;
+}
+
+
+.myheader{
+    display:flex;
+    flex-direction: row;
+    align-items: center;
+}
+.buttons{
+    padding-left: 15vw;
+}
